@@ -15,17 +15,3 @@ int	read_fillit(int fd, char *buff)
 		return (am_i_valid(buff, n));
 }
 
-int	am_i_valid(char *buff, int n)
-{
-	int	i;
-	int	l;
-	int	c;
-
-	i = 0;
-	l = 0;
-	t = 0;
-	while (i != n)
-	{
-		while(l != 4)
-		{
-			g_tetros.tets[p][
