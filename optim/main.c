@@ -62,7 +62,8 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	int		valid;
-	char	buff[600];
+	int		n;
+	char	buff[601];
 
 	valid = 0;
 	if (argc != 2)
@@ -70,12 +71,18 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 2)
 		return (0);
-	if (ft_triplemalloc(g_tetros.tets, g_tetros.tot))
+	n = read_fillit(fd, buff);
+	write(1, "passed\n", 7);
+	g_tetros.tets = ft_triplemalloc(g_tetros.tot);
+	if (g_tetros.tets)
 	{
-		if (get_tetros(buff, read_fillit(fd, buff)))
+		write(1, "passed\n", 7);
+		if (get_tetros(buff,n))
 		{
+			write(1, "passed\n", 7);
 			if (rearrange_tetros())
 			{
+				write(1, "passed\n", 7);
 				solve();
 				valid = 1;
 			}

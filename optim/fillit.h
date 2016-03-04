@@ -6,7 +6,7 @@
 /*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:36:34 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 11:54:51 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 13:27:38 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_tetros		g_tetros;
 //helpers.c
 
 int		explain_program();
-int		ft_triplemalloc(char ***s, int i_max);
+char	***ft_triplemalloc(int i_max);
 int		ft_pow(int nb, int power);
 
 //read.c

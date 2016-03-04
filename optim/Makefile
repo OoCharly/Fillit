@@ -20,5 +20,6 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-
+debug: fclean
+	clang -o $(NAME) $(SRC) -L $(LIB_DIR) -$(LIB)
 re: fclean all

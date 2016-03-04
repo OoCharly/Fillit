@@ -40,6 +40,7 @@ int		get_tetros(char *buff, int n)
 	while (i++ < n)
 	{
 		a = check_tetros(&buff[i], p);
+		write(1, "passed\n", 7);
 		if (a < 21)
 			return (0);
 		i += a;
@@ -56,6 +57,7 @@ int	read_fillit(int fd, char *buff)
 	int	n;
 
 	n = read(fd, buff, 600);
+	write(1, "yo\n", 3);
 	if (n < 20 || n > 545)
 		return (0);
 	a = n / 20;
@@ -65,7 +67,9 @@ int	read_fillit(int fd, char *buff)
 		return (0);
 	else
 	{
+		write(1, "yo\n", 3);
 		g_tetros.tot = a;
+		write(1, "yo\n", 3);
 		return (n);
 	}
 }

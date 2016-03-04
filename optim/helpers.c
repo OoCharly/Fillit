@@ -6,27 +6,34 @@ int	explain_program()
 	return (0);
 }
 
-int	ft_triplemalloc(char ***s, int i_max)
+char	***ft_triplemalloc(int i_max)
 {
-	int i;
-	int y;
+	int		i;
+	int		y;
+	char	***s;
 
 	i = 0;
-	s = (char ***)malloc(sizeof(char **) * (i_max + 1));
-	s[i_max] = NULL;
+	if (!(s = (char ***)malloc(sizeof(char **) * (i_max + 1))))
+		return (NULL);
 	while (i < i_max)
 	{
 		y = 0;
-		s[i] = (char **)malloc(sizeof(char *) * 4);
+		if(!(s[i] = (char **)malloc(sizeof(char *) * 4)))
+			return (NULL);
+		write(1, "yolo\n", 5);
 		while (y < 4)
 		{
-			s[i][y] = (char *)malloc(sizeof(char) * 4);
+			write(1, "\tyolo\n", 6);
+			if(!(s[i][y] = (char *)malloc(sizeof(char) * 4)))
+				return (NULL);
+			write(1, "\toloy\n", 6);
 			ft_memset(s, 0, 4);
 			y++;
 		}
 		i++;
 	}
-	return (1);	
+	s[i_max] = NULL;
+	return (s);	
 }
 
 int		ft_pow(int nb, int power)
