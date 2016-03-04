@@ -3,18 +3,19 @@
 int		check_tetros(char *buff, int p)
 {
 	int	i;
-	int	l;
+	int	n;
 
+	n = 0;
 	i = -1;
-	l = 0;
-	while (buff[++i] && l != 4)
+	while (buff[++i] && (i / 5 != 4))
 	{
 		while (((i % 5) != 4) && buff[i])
 		{
 			if (buff[i] == '#')
 			{
-				g_tetros.tets[p][l][i % 5] = 'A' + p;
+				g_tetros.tets[p][i / 5][i % 5] = 'A' + p;
 				i++;
+				n++;
 			}
 			else if (buff[i] == '.')
 				i++;
@@ -24,9 +25,8 @@ int		check_tetros(char *buff, int p)
 		}
 		if (buff[i] != '\n')
 			return (0);
-		l++;
 	}
-	return (i);
+	return ((n == 4) ? i : 0);
 }
 
 int		get_tetros(char *buff, int n)
@@ -45,6 +45,8 @@ int		get_tetros(char *buff, int n)
 		i += a;
 		if (buff[i] != '\n' && buff[i] != '\0')
 			return (0);
+		if (!get_cohesion(p))
+			return (0);
 		p++;
 	}
 	return (i);
@@ -56,6 +58,8 @@ int	read_fillit(int fd, char *buff)
 	int	n;
 
 	n = read(fd, buff, 600);
+	if (close(fd) < 0)
+		return (0);
 	if (n < 20 || n > 545)
 		return (0);
 	a = n / 20;

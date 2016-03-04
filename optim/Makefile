@@ -13,7 +13,7 @@ LIB = lft
 all: $(NAME)
 
 $(NAME):
-	gcc -o $(NAME) $(FLAGS) $(SRC) -L $(LIB_DIR) -$(LIB)
+	clang -o $(NAME) $(FLAGS) $(SRC) -L $(LIB_DIR) -$(LIB)
 
 clean:
 	rm -rf $(OBS)

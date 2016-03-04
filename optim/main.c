@@ -63,23 +63,23 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	int		valid;
-	int		n;
 	char	buff[601];
+	int		n;
 
 	valid = 0;
 	if (argc != 2)
 		return (explain_program());
 	fd = open(argv[1], O_RDONLY);
-	if (fd < 2)
-		return (0);
-	n = read_fillit(fd, buff);
+	n = read_fillit(fd, buff); 
 	g_tetros.tets = ft_triplemalloc(g_tetros.tot);
-	if (g_tetros.tets)
+	if (g_tetros.tets && fd > 2 && n)
 	{
 		if (get_tetros(buff,n))
 		{
+			write(1, "pass\n", 5);
 			if (rearrange_tetros())
 			{
+				write(1, "pass\n", 5);
 				solve();
 				valid = 1;
 			}

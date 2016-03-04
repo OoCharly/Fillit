@@ -6,7 +6,7 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 11:51:54 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 10:07:08 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:52:29 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,12 @@ int		get_neighbours(int p, int l, int i)
 int		get_cohesion(int p)
 {
 	int	i;
-	int	out;
 	int	pass;
 	int	tmp;
 
 	i = -1;
-	out = 0;
 	pass = 0;
-	while (i++ < 20)
+	while (++i < 20)
 	{
 		while ((i % 5) != 4)
 		{
@@ -68,12 +66,11 @@ int		get_cohesion(int p)
 				tmp = get_neighbours(p, i / 5, i % 5);
 				if (tmp == 0)
 					return (0);
-				out ++;
 				if (tmp > 1)
 					pass = 1;
 			}
+			i++;
 		}
-		i++;
 	}
-	return (out * pass);
+	return (pass);
 }
