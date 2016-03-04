@@ -6,7 +6,7 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 14:14:30 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 16:24:12 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 18:05:41 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,9 @@ void	move_up(int p, int l)
 	}
 	while (j < 4)
 	{
-		ft_memset(g_tetros.tets[p][j], 0, 4);
+		i = 0;
+		while (i < 4)
+			g_tetros.tets[p][j][i++] = '\0';
 		j++;
 	}
 }

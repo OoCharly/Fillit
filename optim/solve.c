@@ -6,7 +6,7 @@
 /*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:13:04 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 17:09:36 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 18:08:57 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		xor_tetros(int x, int y, char **tet)
 
 	n = 0;
 	i = 0;
-	while (n < 4 && (i + y) < g_grid.len)
+	while (i < 4 && n < 4 && (i + y) < g_grid.len)
 	{
 		j = 0;
 		while (j < 4 && (j + x) < g_grid.len)
@@ -113,10 +113,12 @@ int		place(int current)
 	y = 0;
 	if (current == g_tetros.tot)
 		return (1);
-	while (x < g_grid.len - 1 && y < g_grid.len - 1)
+	while (x < (g_grid.len -1) && y < (g_grid.len -1))
 	{
 		if (!find_place(&x, &y, current))
+		{
 			return (0);
+		}
 		place_piece(current, x, y);
 		if (place(current + 1))
 			return (1);
@@ -124,7 +126,7 @@ int		place(int current)
 		{
 			erase_piece(current, x, y);
 			x = (++x == g_grid.len) ? 0 : x;
-			y = (x == 0) ? y++ : y;	
+			y += (x == 0) ? 1 : 0;	
 		}
 	}
 	return (0);

@@ -55,7 +55,9 @@ int	solve()
 		return (0);
 	i = 0;
 	while (!place(0))
+	{
 		g_grid.len++;
+	}
 	return (1);
 }
 
