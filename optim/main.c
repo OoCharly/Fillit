@@ -72,17 +72,15 @@ int	main(int argc, char **argv)
 	if (fd < 2)
 		return (0);
 	n = read_fillit(fd, buff);
-	write(1, "passed\n", 7);
 	g_tetros.tets = ft_triplemalloc(g_tetros.tot);
 	if (g_tetros.tets)
 	{
-		write(1, "passed\n", 7);
 		if (get_tetros(buff,n))
 		{
-			write(1, "passed\n", 7);
+			write(1, "1passed\n", 8);
 			if (rearrange_tetros())
 			{
-				write(1, "passed\n", 7);
+				write(1, "2passed\n", 8);
 				solve();
 				valid = 1;
 			}
