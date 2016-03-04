@@ -6,40 +6,12 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 11:51:54 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/03 13:19:38 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 10:07:08 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		check_tetros(char *buff, int p)
-{
-	int	i;
-	int	l;
-
-	i = -1;
-	l = 0;
-	while (l != 4 && buff[++i])
-	{
-		while (((i % 5) != 4) && buff[i])
-		{
-			if (buff[i] == '#')
-			{
-				g_tetros.tets[p][l][i % 5] = 'A' + p;
-				i++;
-			}
-			else if (buff[i] == '.')
-				i++;
-			else
-				return (0);
-
-		}
-		if (buff[i] != '\n')
-			return (0);
-		l++;
-	}
-	return (i);
-}
 ///////////////get_neighbours//////////////////////////
 //compte et renvoie le nombre d'éléments voisins de l'élément courant
 ///////////////////////////////////////////////////////

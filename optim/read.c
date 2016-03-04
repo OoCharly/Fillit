@@ -1,5 +1,34 @@
 #include "fillit.h"
 
+int		check_tetros(char *buff, int p)
+{
+	int	i;
+	int	l;
+
+	i = -1;
+	l = 0;
+	while (l != 4 && buff[++i])
+	{
+		while (((i % 5) != 4) && buff[i])
+		{
+			if (buff[i] == '#')
+			{
+				g_tetros.tets[p][l][i % 5] = 'A' + p;
+				i++;
+			}
+			else if (buff[i] == '.')
+				i++;
+			else
+				return (0);
+
+		}
+		if (buff[i] != '\n')
+			return (0);
+		l++;
+	}
+	return (i);
+}
+
 int		get_tetros(char *buff, int n)
 {
 	int	i;
@@ -18,7 +47,7 @@ int		get_tetros(char *buff, int n)
 			return (0);
 		p++;
 	}
-	return (1);
+	return (i);
 }
 
 int	read_fillit(int fd, char *buff)
@@ -35,5 +64,8 @@ int	read_fillit(int fd, char *buff)
 	if ((a * 20) + (a - 1) != n)
 		return (0);
 	else
-		return (a);
+	{
+		g_tetros.tot = a;
+		return (n);
+	}
 }

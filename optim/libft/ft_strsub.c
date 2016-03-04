@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgaitsgo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/12 16:03:07 by dgaitsgo          #+#    #+#             */
-/*   Updated: 2016/02/17 21:02:49 by dgaitsgo         ###   ########.fr       */
+/*   Created: 2016/02/25 16:29:51 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/02/26 20:06:31 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,14 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char			*stuck;
-	int				i;
-	unsigned int	beg;
+	char	*out;
 
-	beg = start;
-	i = 0;
-	stuck = (char *)malloc(sizeof(char) * (len + 1));
-	if (stuck != NULL)
+	out = ft_strnew(len);
+	if (s && out)
 	{
-		while (len > 0)
-		{
-			stuck[i] = s[beg];
-			beg++;
-			len--;
-			i++;
-		}
-		stuck[i] = '\0';
+		ft_strncpy(out, &s[start], len);
+		return (out);
 	}
-	return (stuck);
+	else
+		return (NULL);
 }

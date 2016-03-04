@@ -6,7 +6,7 @@ int	explain_program()
 	return (0);
 }
 
-int ft_triplemalloc(char ***s, int i_max, int y_max, int x_max)
+int	ft_triplemalloc(char ***s, int i_max)
 {
 	int i;
 	int y;
@@ -17,14 +17,23 @@ int ft_triplemalloc(char ***s, int i_max, int y_max, int x_max)
 	while (i < i_max)
 	{
 		y = 0;
-		s[i] = (char **)malloc(sizeof(char *) * y_max);
-		while (y < y_max)
+		s[i] = (char **)malloc(sizeof(char *) * 4);
+		while (y < 4)
 		{
-			s[i][y] = (char *)malloc(sizeof(char) * x_max);
-			ft_memset(s, 0, x_max);
+			s[i][y] = (char *)malloc(sizeof(char) * 4);
+			ft_memset(s, 0, 4);
 			y++;
 		}
 		i++;
 	}
 	return (1);	
+}
+
+int		ft_pow(int nb, int power)
+{
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	return (nb * ft_pow(nb, power - 1));
 }

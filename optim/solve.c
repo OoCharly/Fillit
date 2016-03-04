@@ -6,13 +6,13 @@
 /*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:13:04 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/02 14:12:22 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:53:47 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		xor_tetro(int x, int y, char **tet)
+int		xor_tetros(int x, int y, char **tet)
 {
 	int		i;
 	int		j;
@@ -25,9 +25,10 @@ int		xor_tetro(int x, int y, char **tet)
 		j = 0;
 		while (j < 4 && (j + x) < g_grid.len)
 		{
-			if (g_grid.tab[i + y][j + x] || tet[i][j])
+			if (g_grid.tab[i + y][j + x] != '.' || tet[i][j])
 			{
-				if (g_grid.tab[i + y][j + x] && tet[i][j])
+				if ((g_grid.tab[i + y][j + x] != '.')
+						&& tet[i][j])
 					return (0);
 				else
 					n++;
@@ -37,31 +38,6 @@ int		xor_tetro(int x, int y, char **tet)
 		i++;
 	}
 	return ((n == 4) ? 1 : 0);
-}
-
-int		place(int current)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	if (current == g_tetros.tot)
-		return (1);
-	while (x < g_grid.len - 1 && y < g_grid.len - 1)
-	{
-		if (!find_place(&x, &y, current))
-			return (0);
-		place_piece(current, x, y);
-		if (place(current + 1))
-			return (1);
-		else
-		{
-			erase_piece(current, x, y);
-			x++;
-		}
-	}
-	return (0);
 }
 
 void	place_piece(int current, int x, int y)
@@ -104,7 +80,7 @@ void	erase_piece(int current, int x, int y)
 			if (g_grid.tab[i][j] == ('A' + current))
 			{
 				n++;
-				g_grid.tab[i + y][j + x] = '\0';
+				g_grid.tab[i + y][j + x] = '.';
 			}
 			j++;
 		}
@@ -114,7 +90,7 @@ void	erase_piece(int current, int x, int y)
 
 int	find_place(int *x, int *y, int current)
 {
-	while (!xor_tetro(*x, *y, g_tetros.tets[current]))
+	while (!xor_tetros(*x, *y, g_tetros.tets[current]))
 	{
 		(*x)++;
 		if (*x == g_grid.len)
@@ -128,15 +104,28 @@ int	find_place(int *x, int *y, int current)
 	return (1);
 }
 
-int solve()
+int		place(int current)
 {
-	//if you were unable to place a piece
-	if (place(0) == 0)
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	if (current == g_tetros.tot)
+		return (1);
+	while (x < g_grid.len - 1 && y < g_grid.len - 1)
 	{
-		//expand the map 1
-		g_grid.len += 1;
-		//try again
-		solve();
+		if (!find_place(&x, &y, current))
+			return (0);
+		place_piece(current, x, y);
+		if (place(current + 1))
+			return (1);
+		else
+		{
+			erase_piece(current, x, y);
+			x++;
+		}
 	}
-	return (1);
+	return (0);
 }
+

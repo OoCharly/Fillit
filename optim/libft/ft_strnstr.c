@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgaitsgo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/12 16:03:05 by dgaitsgo          #+#    #+#             */
-/*   Updated: 2016/02/19 14:48:39 by dgaitsgo         ###   ########.fr       */
+/*   Created: 2016/02/25 14:04:41 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/02/26 09:41:59 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	size_t	len;
 
-	i = 0;
-	j = 0;
-	if (s2[0] == '\0')
+	if (s2 == '\0')
 		return ((char*)s1);
-	while (s1[i] != '\0' && n)
+	len = ft_strlen(s2);
+	while (*s1 && n-- >= len)
 	{
-		if (n < ft_strlen(s2))
-			break ;
-		if (ft_strncmp(s1 + i, s2, ft_strlen(s2)) == 0)
-			return ((char *)s1 + i);
-		n--;
-		i++;
+		if (!ft_memcmp(s1, s2, len))
+			return ((char*)s1);
+		s1++;
 	}
 	return (NULL);
 }

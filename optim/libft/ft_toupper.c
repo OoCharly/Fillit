@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgaitsgo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/12 16:03:08 by dgaitsgo          #+#    #+#             */
-/*   Updated: 2016/02/16 00:38:46 by dgaitsgo         ###   ########.fr       */
+/*   Created: 2016/02/25 15:18:41 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/02/26 09:40:40 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_toupper(int c)
 {
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	return (c);
+	return ((ft_isalpha(c) && c > 96) ? (c - 32) : c);
 }

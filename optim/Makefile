@@ -5,13 +5,15 @@ SRC = read.c verify_neighbors.c helpers.c tetros_to_left.c \
 
 OBS = $(SRC:.c=.o)
 
-LIB = ./libft/libft.a
+FLAGS = -Wall -Werror -Wextra
+
+LIB_DIR = ./libft
+LIB = lft
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Werror -Wextra $(SRC)
-	gcc -o $(NAME) $(OBS) $(LIB)
+	gcc -o $(NAME) $(FLAGS) $(SRC) -L $(LIB_DIR) -$(LIB)
 
 clean:
 	rm -rf $(OBS)

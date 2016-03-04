@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   yolo.h                                             :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/02 12:36:34 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/02 14:12:16 by cdesvern         ###   ########.fr       */
+/*   Created: 2016/02/26 20:44:39 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/02/26 22:33:50 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FILLIT_H
-# define __FILLIT_H
+#include "libft.h"
 
-typedef struct	s_tetros
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	char		***tets;
-	int			tot;
-}				t_tetros;
-
-typedef struct	s_grid
-{
-	char		**tab;
-	int			len;
-}				t_grid;
-
-t_grid			g_grid;
-t_tetros		g_tetros;
+	if (alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+}

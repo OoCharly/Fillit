@@ -3,49 +3,93 @@
 /*if succesfuly parsed and solved, 
 display grid. Else print "error"*/
  
-int display(int opt)
+void	display(int opt)
 {
-	int x;
-	int y;
+	int i;
 
-	x = 0;
-	y = 0;
+	i = 0;
 	if (opt == 0)
 	{
 		ft_putstr("error\n");
-		return (0);
+		return ;
 	}
-	while (y < g_grid.len)
+	while (i < g_grid.len)
 	{
-		x = 0;
-		while (x < g_grid.len)
-		{
-			ft_putchar(g_grid.tab[y][x]);
-			x++;
-		}
-		y++;
+		write(1, &g_grid.tab[i], g_grid.len);
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
+int	alloc_init_grid()
+{
+	int	i;
+
+	i = 0;
+	if (!(g_grid.tab = (char**)malloc(sizeof(char*) * 105)))
+		return (0);
+	while (i < 105)
+	{
+		if (!(g_grid.tab[i] = (char*)malloc(sizeof(char) * 105)))
+			return (0);
+	}
+	i = 0;
+	while (i < 11025)
+	{
+		g_grid.tab[i / 106][i % 106] = '.';
+		i++;
 	}
 	return (1);
 }
-int main(int argc, char **argv)
+
+int	solve()
 {
-	int fd;
-	int valid;
-	char *buff;
+	int	i;
+
+	i = 2;
+	while ((g_tetros.tot * 4) < ft_pow(i, 2))//get the theoritical minimal square
+		i++;
+	g_grid.len = i;
+	if (!alloc_init_grid())
+		return (0);
+	i = 0;
+	while (!place(0))
+		g_grid.len++;
+	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	int		fd;
+	int		valid;
+	char	buff[600];
 
 	valid = 0;
 	if (argc != 2)
 		return (explain_program());
-	if ((fd = open(argv[1], O_RDONLY) < 2) && (display(0)))
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 2)
 		return (0);
-	buff = ft_memalloc(600);
-	g_tetros.tot = read_fillit(fd, buff);
-	if ((g_tetros.tot) && (ft_triplemalloc(g_tetros.tets, g_tetros.tot, 4, 4)))
-		if (rearrange_tetros())
-			/*Where does n in get_tetros come from? */
-			if (get_tetros(buff, 0))
-				if (solve())
-					valid = 1;
+	if (ft_triplemalloc(g_tetros.tets, g_tetros.tot))
+	{
+		if (get_tetros(buff, read_fillit(fd, buff)))
+		{
+			if (rearrange_tetros())
+			{
+				solve();
+				valid = 1;
+			}
+		}
+	}
 	display(valid);
 	return (0);
 }
+/*
+		if (rearrange_tetros())
+			if (get_tetros(buff, read_fillit(fd, buff))
+*/// You can't rearrange tetros before you get them
+//// The rearrange function use the global struct which need to be filled with parsed tetros
+
+/*Where does n in get_tetros come from? */
+// comes from read_fillit and is the number of char read.
+// Fixed the function read_fillit to change directly the g_tetros.tot

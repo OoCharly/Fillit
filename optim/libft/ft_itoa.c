@@ -3,73 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgaitsgo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/12 17:02:02 by dgaitsgo          #+#    #+#             */
-/*   Updated: 2016/02/17 22:36:08 by dgaitsgo         ###   ########.fr       */
+/*   Created: 2016/02/25 18:08:14 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/02/26 22:35:31 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		push(char digit, int *index, char *s)
+static unsigned long	ft_pow_ten(int i)
 {
-	(*index)++;
-	s[*index] = digit;
-}
-
-static void		ft_putnbr_string(int nbr, int *index, char *s)
-{
-	if (nbr < 0)
-	{
-		push('-', index, s);
-		if (nbr == -2147483648)
-		{
-			push('2', index, s);
-			nbr = -147483648;
-		}
-		nbr = nbr * -1;
-	}
-	if (nbr / 10 > 0)
-	{
-		ft_putnbr_string(nbr / 10, index, s);
-		ft_putnbr_string(nbr % 10, index, s);
-	}
-	else
-		push(nbr + 48, index, s);
-}
-
-static int		num_size(int n)
-{
-	int neg;
-	int nums;
-
-	nums = 0;
-	neg = n > 0 ? 0 : 1;
-	if (n == -2147483647)
-		return (11);
-	n = n > 0 ? n : -n;
-	if (n == 0)
+	if (i == 0)
 		return (1);
-	while (n > 0)
-	{
-		n = n / 10;
-		nums++;
-	}
-	return (nums + neg);
+	else
+		return (10 * ft_pow_ten(i - 1));
 }
 
-char			*ft_itoa(int n)
+char					*ft_itoa(int n)
 {
-	char	*number;
-	int		adress;
-	int		*index;
+	int		neg;
+	int		i;
+	long	ln;
+	char	*out;
 
-	adress = -1;
-	index = &adress;
-	if (!(number = (char *)malloc(sizeof(char) * (num_size(n) + 1))))
-		return (NULL);
-	ft_putnbr_string(n, index, number);
-	number[*index + 1] = '\0';
-	return (number);
+	neg = (n < 0) ? 1 : 0;
+	i = 0;
+	ln = n;
+	if (neg)
+		ln = -ln;
+	while (ln / ft_pow_ten(i))
+		i++;
+	if (ln == 0)
+		i = 1;
+	out = ft_strnew((size_t)(i + neg));
+	if (neg)
+		out[0] = '-';
+	while (--i >= 0)
+		out[neg++] = (char)((ln / ft_pow_ten(i)) % 10 + 48);
+	return (out);
 }
