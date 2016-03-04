@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 18:37:49 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/03/04 18:38:08 by cdesvern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 int		check_tetros(char *buff, int p)
@@ -21,7 +33,6 @@ int		check_tetros(char *buff, int p)
 				i++;
 			else
 				return (0);
-
 		}
 		if (buff[i] != '\n')
 			return (0);
@@ -52,7 +63,7 @@ int		get_tetros(char *buff, int n)
 	return (i);
 }
 
-int	read_fillit(int fd, char *buff)
+int		read_fillit(int fd, char *buff)
 {
 	int	a;
 	int	n;

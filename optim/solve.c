@@ -6,7 +6,7 @@
 /*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:13:04 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 18:08:57 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 18:32:35 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		xor_tetros(int x, int y, char **tet)
 				if ((g_grid.tab[i + y][j + x] != '.')
 						&& tet[i][j])
 					return (0);
-				else if (tet[i][j]) 
+				else if (tet[i][j])
 					n++;
 			}
 			j++;
@@ -88,7 +88,7 @@ void	erase_piece(int current, int x, int y)
 	}
 }
 
-int	find_place(int *x, int *y, int current)
+int		find_place(int *x, int *y, int current)
 {
 	while (!xor_tetros(*x, *y, g_tetros.tets[current]))
 	{
@@ -113,7 +113,7 @@ int		place(int current)
 	y = 0;
 	if (current == g_tetros.tot)
 		return (1);
-	while (x < (g_grid.len -1) && y < (g_grid.len -1))
+	while (x < (g_grid.len - 1) && y < (g_grid.len - 1))
 	{
 		if (!find_place(&x, &y, current))
 		{
@@ -126,9 +126,8 @@ int		place(int current)
 		{
 			erase_piece(current, x, y);
 			x = (++x == g_grid.len) ? 0 : x;
-			y += (x == 0) ? 1 : 0;	
+			y += (x == 0) ? 1 : 0;
 		}
 	}
 	return (0);
 }
-

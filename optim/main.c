@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 18:27:31 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/03/04 18:30:08 by cdesvern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-/*if succesfuly parsed and solved, 
-display grid. Else print "error"*/
- 
 void	display(int opt)
 {
 	int i;
@@ -21,7 +30,7 @@ void	display(int opt)
 	}
 }
 
-int	alloc_init_grid()
+int		alloc_init_grid(void)
 {
 	int	i;
 
@@ -43,12 +52,12 @@ int	alloc_init_grid()
 	return (1);
 }
 
-int	solve()
+int		solve(void)
 {
 	int	i;
 
 	i = 2;
-	while ((g_tetros.tot * 4) > ft_pow(i, 2))//get the theoritical minimal square
+	while ((g_tetros.tot * 4) > ft_pow(i, 2))
 		i++;
 	g_grid.len = i;
 	if (!alloc_init_grid())
@@ -61,7 +70,7 @@ int	solve()
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int		fd;
 	int		valid;
@@ -72,11 +81,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (explain_program());
 	fd = open(argv[1], O_RDONLY);
-	n = read_fillit(fd, buff); 
+	n = read_fillit(fd, buff);
 	g_tetros.tets = ft_triplemalloc(g_tetros.tot);
 	if (g_tetros.tets && fd > 2 && n)
 	{
-		if (get_tetros(buff,n))
+		if (get_tetros(buff, n))
 		{
 			if (rearrange_tetros())
 			{
@@ -88,12 +97,3 @@ int	main(int argc, char **argv)
 	display(valid);
 	return (0);
 }
-/*
-		if (rearrange_tetros())
-			if (get_tetros(buff, read_fillit(fd, buff))
-*/// You can't rearrange tetros before you get them
-//// The rearrange function use the global struct which need to be filled with parsed tetros
-
-/*Where does n in get_tetros come from? */
-// comes from read_fillit and is the number of char read.
-// Fixed the function read_fillit to change directly the g_tetros.tot

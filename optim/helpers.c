@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 18:36:33 by cdesvern          #+#    #+#             */
+/*   Updated: 2016/03/04 18:36:36 by cdesvern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-int	explain_program()
+int		explain_program(void)
 {
 	ft_putstr("fillit reads one and only one file at a time\n");
 	return (0);
@@ -27,11 +39,11 @@ char	***ft_triplemalloc(int i_max)
 	while (i < i_max)
 	{
 		y = 0;
-		if(!(s[i] = (char **)malloc(sizeof(char *) * 4)))
+		if (!(s[i] = (char **)malloc(sizeof(char *) * 4)))
 			return (NULL);
 		while (y < 4)
 		{
-			if(!(s[i][y] = (char *)malloc(sizeof(char) * 4)))
+			if (!(s[i][y] = (char *)malloc(sizeof(char) * 4)))
 				return (NULL);
 			init_tets(s[i][y]);
 			y++;
