@@ -6,7 +6,7 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 14:14:30 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 14:08:58 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:35:21 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	rearrange_tetros(void)
 	p = 0;
 	while (p < g_tetros.tot)
 	{
-		write(1, "step1\n", 6);
 		l = get_empty_columns(p);
 		if (l)
 			move_left(p, l);
