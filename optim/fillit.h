@@ -6,7 +6,7 @@
 /*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:36:34 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 13:27:38 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 17:09:40 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_grid			g_grid;
 t_tetros		g_tetros;
 
 //main and display
-//int display(int opt);
+void	display(int opt);
 
 //helpers.c
 

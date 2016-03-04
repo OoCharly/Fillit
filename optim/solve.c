@@ -6,7 +6,7 @@
 /*   By: cdesvern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 12:13:04 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 14:35:05 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 17:09:36 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		xor_tetros(int x, int y, char **tet)
 				if ((g_grid.tab[i + y][j + x] != '.')
 						&& tet[i][j])
 					return (0);
-				else
+				else if (tet[i][j]) 
 					n++;
 			}
 			j++;
@@ -77,7 +77,7 @@ void	erase_piece(int current, int x, int y)
 		j = 0;
 		while (j < 4 && (j + x) < g_grid.len)
 		{
-			if (g_grid.tab[i][j] == ('A' + current))
+			if (g_grid.tab[i + y][j + x] == ('A' + current))
 			{
 				n++;
 				g_grid.tab[i + y][j + x] = '.';
@@ -123,7 +123,8 @@ int		place(int current)
 		else
 		{
 			erase_piece(current, x, y);
-			x++;
+			x = (++x == g_grid.len) ? 0 : x;
+			y = (x == 0) ? y++ : y;	
 		}
 	}
 	return (0);

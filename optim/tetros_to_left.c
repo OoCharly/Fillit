@@ -6,7 +6,7 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 14:14:30 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 14:35:21 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:24:12 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	move_left(int p, int c)
 		i = 0;
 		while (i < 4)
 		{
-			g_tetros.tets[p][i][j] = g_tetros.tets[p][i][c + 1];
+			g_tetros.tets[p][i][j] = g_tetros.tets[p][i][c];
 			i++;
 		}
 		j++;
@@ -90,7 +90,7 @@ void	move_up(int p, int l)
 		i = 0;
 		while (i < 4)
 		{
-			g_tetros.tets[p][j][i] = g_tetros.tets[p][l + 1][i];
+			g_tetros.tets[p][j][i] = g_tetros.tets[p][l][i];
 			i++;
 		}
 		j++;
@@ -114,7 +114,7 @@ int	rearrange_tetros(void)
 		l = get_empty_columns(p);
 		if (l)
 			move_left(p, l);
-		l = get_empty_columns(p);
+		l = get_empty_lines(p);
 		if (l)
 			move_up(p, l);
 		p++;

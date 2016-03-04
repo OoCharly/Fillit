@@ -48,7 +48,7 @@ int	solve()
 	int	i;
 
 	i = 2;
-	while ((g_tetros.tot * 4) < ft_pow(i, 2))//get the theoritical minimal square
+	while ((g_tetros.tot * 4) > ft_pow(i, 2))//get the theoritical minimal square
 		i++;
 	g_grid.len = i;
 	if (!alloc_init_grid())
@@ -76,10 +76,8 @@ int	main(int argc, char **argv)
 	{
 		if (get_tetros(buff,n))
 		{
-			write(1, "pass\n", 5);
 			if (rearrange_tetros())
 			{
-				write(1, "pass\n", 5);
 				solve();
 				valid = 1;
 			}
