@@ -6,7 +6,7 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 18:52:27 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 18:52:30 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/05 13:06:05 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
 
 typedef struct	s_tetros
 {
@@ -46,5 +45,7 @@ int				rearrange_tetros(void);
 
 int				check_tetros(char *buff, int p);
 int				get_cohesion(int p);
+
+void			ft_putstr(char *str);
 
 #endif
