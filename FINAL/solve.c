@@ -6,7 +6,7 @@
 /*   By: cdesvern <cdesvern@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 18:51:56 by cdesvern          #+#    #+#             */
-/*   Updated: 2016/03/04 18:51:58 by cdesvern         ###   ########.fr       */
+/*   Updated: 2016/03/04 19:20:51 by cdesvern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		place(int current)
 	y = 0;
 	if (current == g_tetros.tot)
 		return (1);
-	while (x < (g_grid.len - 1) && y < (g_grid.len - 1))
+	while (x < (g_grid.len) && y < (g_grid.len))
 	{
 		if (!find_place(&x, &y, current))
 		{
